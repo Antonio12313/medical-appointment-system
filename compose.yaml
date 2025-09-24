@@ -1,0 +1,7 @@
+﻿services:
+  medicalappointment.api:
+    image: medicalappointment.api
+    build:
+      context: .
+      dockerfile: MedicalAppointment.Api/Dockerfile
+

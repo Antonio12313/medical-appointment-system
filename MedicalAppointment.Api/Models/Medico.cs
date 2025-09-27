@@ -5,7 +5,8 @@ namespace MedicalAppointment.Api.Models;
 public class Medico
 {
     public int Id { get; set; }
-    
+        
+    [Required]
     public int UsuarioId { get; set; }
     
     [Required]
@@ -17,5 +18,5 @@ public class Medico
     public string Especialidade { get; set; } = string.Empty;
 
     public Usuario Usuario { get; set; } = null!;
-    public List<HorarioDisponivel> HorariosDisponiveis { get; set; } = new();
+    public ICollection<HorarioDisponivel> HorariosDisponiveis { get; set; } = new List<HorarioDisponivel>();
 }

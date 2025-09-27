@@ -1,7 +1,38 @@
 ﻿services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_medical
+    environment:
+      POSTGRES_DB: medical_appointment
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - medical_network
+
   medicalappointment.api:
     image: medicalappointment.api
     build:
       context: .
       dockerfile: MedicalAppointment.Api/Dockerfile
+    container_name: medical_api
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=medical_appointment;Username=postgres;Password=postgres123
+    depends_on:
+      - postgres
+    networks:
+      - medical_network
 
+volumes:
+  postgres_data:
+
+networks:
+  medical_network:
+    driver: bridge

@@ -71,7 +71,8 @@ public class AgendamentosController : ControllerBase
                 {
                     Id = a.Paciente.Id,
                     Cpf = a.Paciente.Cpf,
-                    Telefone = a.Paciente.Telefone
+                    Telefone = a.Paciente.Telefone,
+                    Nome = a.Paciente.Usuario.Nome,
                 },
                 Horario = new HorarioDisponivelDto
                 {
@@ -84,7 +85,8 @@ public class AgendamentosController : ControllerBase
                     {
                         Id = a.Horario.Medico.Id,
                         Crm = a.Horario.Medico.Crm,
-                        Especialidade = a.Horario.Medico.Especialidade
+                        Especialidade = a.Horario.Medico.Especialidade,
+                        Nome = a.Horario.Medico.Usuario.Nome
                     }
                 }
             }).ToList();
@@ -179,7 +181,8 @@ public class AgendamentosController : ControllerBase
                 {
                     Id = agendamento.Paciente.Id,
                     Cpf = agendamento.Paciente.Cpf,
-                    Telefone = agendamento.Paciente.Telefone
+                    Telefone = agendamento.Paciente.Telefone,
+                    Nome = agendamento.Paciente.Usuario.Nome,
                 },
                 Horario = new HorarioDisponivelDto
                 {
@@ -192,7 +195,8 @@ public class AgendamentosController : ControllerBase
                     {
                         Id = agendamento.Horario.Medico.Id,
                         Crm = agendamento.Horario.Medico.Crm,
-                        Especialidade = agendamento.Horario.Medico.Especialidade
+                        Especialidade = agendamento.Horario.Medico.Especialidade,
+                        Nome = agendamento.Horario.Medico.Usuario.Nome
                     }
                 }
             };
@@ -255,7 +259,8 @@ public class AgendamentosController : ControllerBase
                 {
                     Id = agendamento.Paciente.Id,
                     Cpf = agendamento.Paciente.Cpf,
-                    Telefone = agendamento.Paciente.Telefone
+                    Telefone = agendamento.Paciente.Telefone,
+                    Nome = agendamento.Paciente.Usuario.Nome,
                 },
                 Horario = new HorarioDisponivelDto
                 {
@@ -268,7 +273,8 @@ public class AgendamentosController : ControllerBase
                     {
                         Id = agendamento.Horario.Medico.Id,
                         Crm = agendamento.Horario.Medico.Crm,
-                        Especialidade = agendamento.Horario.Medico.Especialidade
+                        Especialidade = agendamento.Horario.Medico.Especialidade,
+                        Nome = agendamento.Horario.Medico.Usuario.Nome
                     }
                 }
             };

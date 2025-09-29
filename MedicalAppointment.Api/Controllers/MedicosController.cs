@@ -27,7 +27,8 @@ public class MedicosController : ControllerBase
                 {
                     Id = m.Id,
                     Crm = m.Crm,
-                    Especialidade = m.Especialidade
+                    Especialidade = m.Especialidade,
+                    Nome = m.Usuario.Nome,
                 })
                 .ToListAsync();
 
@@ -57,7 +58,8 @@ public class MedicosController : ControllerBase
             {
                 Id = medico.Id,
                 Crm = medico.Crm,
-                Especialidade = medico.Especialidade
+                Especialidade = medico.Especialidade,
+                Nome = medico.Usuario.Nome
             };
 
             return Ok(medicoDto);
@@ -80,6 +82,7 @@ public class MedicosController : ControllerBase
             }
 
             var horarios = await _context.HorariosDisponiveis
+                .Include(h => h.Medico)
                 .Where(h => h.MedicoId == id && h.Disponivel)
                 .OrderBy(h => h.DataHoraInicio)
                 .Select(h => new HorarioDisponivelDto
@@ -88,7 +91,14 @@ public class MedicosController : ControllerBase
                     MedicoId = h.MedicoId,
                     DataHoraInicio = h.DataHoraInicio,
                     DataHoraFim = h.DataHoraFim,
-                    Disponivel = h.Disponivel
+                    Disponivel = h.Disponivel,
+                    Medico =new MedicoDto
+                    {
+                        Id = h.Medico.Id,
+                        Crm = h.Medico.Crm,
+                        Especialidade = h.Medico.Especialidade,
+                        Nome = h.Medico.Usuario.Nome
+                    }
                 })
                 .ToListAsync();
 

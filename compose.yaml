@@ -1,6 +1,4 @@
-﻿version: '3.8'
-
-services:
+﻿services:
   postgres:
     image: postgres:15
     container_name: postgres_medical
@@ -16,33 +14,41 @@ services:
       - medical_network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   medicalappointment.api:
-    image: medicalappointment.api
     build:
-      context: .
-      dockerfile: MedicalAppointment.Api/Dockerfile
+      context: ./MedicalAppointment.Api
+      dockerfile: Dockerfile
     container_name: medical_api
     ports:
       - "8080:8080"
-      - "8081:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=medical_appointment;Username=postgres;Password=postgres123
     depends_on:
-      medicalappointment.api:
+      postgres:
         condition: service_healthy
     networks:
       - medical_network
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:3000 || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+  
+  frontend:
+    build:
+      context: ./MedicalAppointment.Api/front-end
+      dockerfile: Dockerfile
+      args:
+        NUXT_PUBLIC_API_BASE: http://medicalappointment.api:8080
+    container_name: medical_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      medicalappointment.api:
+        condition: service_started
+    networks:
+      - medical_network
 
 volumes:
   postgres_data:

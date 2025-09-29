@@ -51,7 +51,8 @@ namespace MedicalAppointment.Api.Controllers
                     {
                         Id = h.Medico.Id,
                         Crm = h.Medico.Crm,
-                        Especialidade = h.Medico.Especialidade
+                        Especialidade = h.Medico.Especialidade,
+                        Nome = h.Medico.Usuario.Nome
                     }
                 }).ToList();
 
@@ -189,7 +190,8 @@ namespace MedicalAppointment.Api.Controllers
                     {
                         Id = horario.Medico.Id,
                         Crm = horario.Medico.Crm,
-                        Especialidade = horario.Medico.Especialidade
+                        Especialidade = horario.Medico.Especialidade, 
+                        Nome = horario.Medico.Usuario.Nome
                     }
                 };
 

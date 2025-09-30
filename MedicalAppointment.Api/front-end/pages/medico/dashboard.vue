@@ -243,7 +243,7 @@ const loadData = async () => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    const agendamentosRes = await $fetch(`${apiBase}/api/Agendamentos`, {
+    const agendamentosRes = await $fetch(`${apiBase}//Agendamentos`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -265,7 +265,7 @@ const loadMeusHorarios = async () => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    const horarios = await $fetch(`${apiBase}/api/Horarios/meus-horarios`, {
+    const horarios = await $fetch(`${apiBase}/Horarios/meus-horarios`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -288,7 +288,7 @@ const criarHorario = async () => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    await $fetch(`${apiBase}/api/Horarios`, {
+    await $fetch(`${apiBase}/Horarios`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -319,7 +319,7 @@ const deletarHorario = async (horarioId) => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    await $fetch(`${apiBase}/api/Horarios/${horarioId}`, {
+    await $fetch(`${apiBase}/Horarios/${horarioId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`

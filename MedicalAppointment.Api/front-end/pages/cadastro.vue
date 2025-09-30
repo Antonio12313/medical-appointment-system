@@ -256,7 +256,7 @@ const handleCadastro = async () => {
     
     const apiBase = useRuntimeConfig().public.apiBase;
 
-    const response = await $fetch(`${apiBase}/api/auth/register`, {
+    const response = await $fetch(`${apiBase}/auth/register`, {
       method: 'POST',
       body: payload,
       headers: {

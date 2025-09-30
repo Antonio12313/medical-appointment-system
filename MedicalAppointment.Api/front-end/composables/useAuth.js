@@ -6,7 +6,7 @@ export const useAuth = () => {
 
     const login = async (credentials) => {
         try {
-            return await $fetch(`${apiBase}/api/Auth/login`, {
+            return await $fetch(`${apiBase}/Auth/login`, {
                 method: 'POST',
                 body: credentials,
                 headers: {

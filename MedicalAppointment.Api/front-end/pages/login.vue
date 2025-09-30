@@ -129,7 +129,7 @@ const handleLogin = async () => {
   error.value = ''
 
   try {
-    const response = await $fetch(`${apiBase}/api/Auth/login`, {
+    const response = await $fetch(`${apiBase}/Auth/login`, {
       method: 'POST',
       body: loginData.value,
       headers: {

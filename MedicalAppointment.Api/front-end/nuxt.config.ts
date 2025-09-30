@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            apiBase: process.env.API_BASE_URL || 'http://localhost:8080'
+            apiBase: '/api'
         }
     },
 
@@ -32,12 +32,20 @@ export default defineNuxtConfig({
         port: 3000
     },
     ssr: false,
+
     nitro: {
         devProxy: {
             '/api': {
-                target: process.env.API_BASE_URL || 'http://localhost:8080',
-                changeOrigin: true,
-                secure: false
+                target: 'http://medical_api:8080',
+                changeOrigin: true
+            }
+        }
+    },
+
+    routeRules: {
+        '/api/**': {
+            proxy: {
+                to: 'http://medical_api:8080/api/**'
             }
         }
     }

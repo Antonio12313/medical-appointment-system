@@ -259,7 +259,7 @@ const carregarMedicos = async () => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    const response = await $fetch(`${apiBase}/api/Medicos`, {
+    const response = await $fetch(`${apiBase}/Medicos`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -287,7 +287,7 @@ const carregarHorariosMedico = async (medicoId) => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    const response = await $fetch(`${apiBase}/api/Medicos/${medicoId}/horarios`, {
+    const response = await $fetch(`${apiBase}/Medicos/${medicoId}/horarios`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -310,7 +310,7 @@ const carregarAgendamentos = async () => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    const response = await $fetch(`${apiBase}/api/Agendamentos`, {
+    const response = await $fetch(`${apiBase}/Agendamentos`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -335,7 +335,7 @@ const confirmarAgendamento = async () => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    await $fetch(`${apiBase}/api/Agendamentos`, {
+    await $fetch(`${apiBase}/Agendamentos`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -374,7 +374,7 @@ const cancelarAgendamento = async (agendamentoId) => {
     const token = getToken()
     const apiBase = config.public.apiBase
 
-    await $fetch(`${apiBase}/api/Agendamentos/${agendamentoId}/cancelar`, {
+    await $fetch(`${apiBase}/Agendamentos/${agendamentoId}/cancelar`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`

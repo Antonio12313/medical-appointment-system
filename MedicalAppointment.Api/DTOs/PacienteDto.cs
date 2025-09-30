@@ -1,0 +1,9 @@
+namespace MedicalAppointment.Api.DTOs;
+
+public class PacienteDto
+{
+    public int Id { get; set; }
+    public string Cpf { get; set; } = string.Empty;
+    public string Telefone { get; set; } = string.Empty;
+    public string Nome { get; set; } = string.Empty;
+}

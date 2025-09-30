@@ -6,6 +6,7 @@ public class Paciente
 {
     public int Id { get; set; }
     
+    [Required]
     public int UsuarioId { get; set; }
     
     [Required]
@@ -17,5 +18,5 @@ public class Paciente
     public string Telefone { get; set; } = string.Empty;
 
     public Usuario Usuario { get; set; } = null!;
-    public List<Agendamento> Agendamentos { get; set; } = new();
+    public ICollection<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
 }

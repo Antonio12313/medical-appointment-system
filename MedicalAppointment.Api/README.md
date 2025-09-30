@@ -65,7 +65,7 @@ Este comando irá:
 Aguarde para o banco inicializar, depois execute:
 
 ```bash
-docker exec -it medical-appointment-api dotnet ef database update
+docker exec -it <nome do container> dotnet ef database update
 ```
 
 Este comando criará todas as tabelas necessárias no banco de dados.

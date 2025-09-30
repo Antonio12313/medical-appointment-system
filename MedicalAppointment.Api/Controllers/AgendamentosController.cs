@@ -119,7 +119,6 @@ public class AgendamentosController : ControllerBase
                 return NotFound(new { message = "Paciente não encontrado" });
             }
 
-            // Verificar se o horário existe e está disponível
             var horario = await _context.HorariosDisponiveis
                 .Include(h => h.Medico)
                 .ThenInclude(m => m.Usuario)
@@ -135,7 +134,6 @@ public class AgendamentosController : ControllerBase
                 return BadRequest(new { message = "Horário não está disponível" });
             }
 
-            // Verificar se já existe agendamento para este horário
             var agendamentoExistente = await _context.Agendamentos
                 .FirstOrDefaultAsync(a =>
                     a.HorarioId == createDto.HorarioId && a.Status != StatusAgendamento.Cancelado);
@@ -145,7 +143,6 @@ public class AgendamentosController : ControllerBase
                 return BadRequest(new { message = "Este horário já foi agendado" });
             }
 
-            // Criar o agendamento
             var agendamento = new Agendamento
             {
                 PacienteId = paciente.Id,
@@ -156,12 +153,10 @@ public class AgendamentosController : ControllerBase
 
             _context.Agendamentos.Add(agendamento);
 
-            // Marcar horário como não disponível
             horario.Disponivel = false;
 
             await _context.SaveChangesAsync();
 
-            // Recarregar o agendamento com as relações
             agendamento = await _context.Agendamentos
                 .Include(a => a.Paciente)
                 .ThenInclude(p => p.Usuario)
@@ -227,7 +222,6 @@ public class AgendamentosController : ControllerBase
                 return NotFound(new { message = "Agendamento não encontrado" });
             }
 
-            // Verificar se o usuário tem permissão para ver este agendamento
             var userType = User.FindFirst("tipo")?.Value;
             var userId = int.Parse(User.FindFirst("id")?.Value ?? "0");
 
@@ -302,7 +296,6 @@ public class AgendamentosController : ControllerBase
                 return NotFound(new { message = "Agendamento não encontrado" });
             }
 
-            // Verificar se o usuário tem permissão para cancelar este agendamento
             var userType = User.FindFirst("tipo")?.Value;
             var userId = int.Parse(User.FindFirst("id")?.Value ?? "0");
 

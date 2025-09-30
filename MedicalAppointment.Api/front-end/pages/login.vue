@@ -137,7 +137,6 @@ const handleLogin = async () => {
         'Accept': 'application/json'
       }
     })
-    console.log('Resposta da API:', response)
 
     if (response?.token && response?.usuario) {
       if (response.usuario.tipoUsuario !== tipoLogin.value) { 

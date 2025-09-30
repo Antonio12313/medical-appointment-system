@@ -36,7 +36,6 @@ public class UsuarioService : IUsuarioService
         _context.Usuarios.Add(usuario);
         await _context.SaveChangesAsync();
 
-        // Criar perfil específico baseado no tipo
         if (dto.TipoUsuario == "medico" && dto.DadosMedico != null)
         {
             var medico = new Medico

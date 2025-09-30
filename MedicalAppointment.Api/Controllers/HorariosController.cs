@@ -231,7 +231,6 @@ namespace MedicalAppointment.Api.Controllers
                     return NotFound(new { message = "Horário não encontrado" });
                 }
 
-                // CORREÇÃO: Comparar enum com enum, não com string
                 var agendamento = await _context.Agendamentos
                     .FirstOrDefaultAsync(a => a.HorarioId == id && a.Status != StatusAgendamento.Cancelado);
 

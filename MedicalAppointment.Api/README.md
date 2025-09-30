@@ -8,6 +8,10 @@ Sistema de agendamento médico desenvolvido em ASP.NET Core e Nuxt.js, permitind
 - Git instalado
 - Porta 3000 (frontend) e 8080 (backend) disponíveis
 
+## Demonstração: 
+- Você pode acessar esse site para vê o funcionamento:
+- https://vania-viscoid-divaricately.ngrok-free.dev
+
 ## Tecnologias Utilizadas
 
 ### Backend
